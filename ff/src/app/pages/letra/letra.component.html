@@ -1,0 +1,66 @@
+<main-nav></main-nav>
+<mat-card align="center">
+  <mat-card-header>
+    <mat-card-title>{{ isEditMode ? 'Editar Letra' : 'Agregar Letra' }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (submit)="onSubmit()" #letraForm="ngForm">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre del cliente</mat-label>
+          <input matInput placeholder="Cliente" name="cliente" required [(ngModel)]="letraData.cliente">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input_right">
+          <mat-label>Fecha inicial</mat-label>
+          <input matInput placeholder="F_inicial" name="f_inicial" type="date" required [(ngModel)]="letraData.f_inicial">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha final</mat-label>
+          <input matInput placeholder="F_final" name="f_final"  type="date"  required [(ngModel)]="letraData.f_final">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input_right">
+          <mat-label>Fecha de descuento</mat-label>
+          <input matInput placeholder="F_descuento" name="f_descuento" type="date" required [(ngModel)]="letraData.f_descuento">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Valor nominal</mat-label>
+          <input matInput placeholder="V_nominal" name="v_nominal"  type="number"  required [(ngModel)]="letraData.v_nominal">
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="margin-left: 30px">
+          <mat-label>Tipo de tasa</mat-label>
+          <mat-select [(ngModel)]="letraData.t_tasa" name="tt">
+            <mat-option *ngFor="let tt of t_tasas" [value]="tt.value">
+              {{tt.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Tasa</mat-label>
+          <input matInput placeholder="Tasa" name="tasa"  type="number"  required [(ngModel)]="letraData.tasa">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input_right">
+          <mat-label>Retenciones</mat-label>
+          <input matInput placeholder="Retenciones" name="retenciones" type="number" required [(ngModel)]="letraData.retenciones">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill" style="width: 430px">
+          <mat-label>Comentario</mat-label>
+          <textarea matInput [(ngModel)]="letraData.comentario"></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <ng-container>
+          <button mat-raised-button class="mat-button-text" color="primary" style="margin-right: 15px">{{ isEditMode ? 'Update' : 'Add'}}</button>
+          <a mat-raised-button class="mat-button-text" color="warn" (click)="cancelEdit()">Cancel</a>
+        </ng-container>
+      </p>
+    </form>
+  </mat-card-content>
+</mat-card>
